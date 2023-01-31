@@ -3,7 +3,6 @@ package lesson_one;
 import lombok.AllArgsConstructor;
 
 @AllArgsConstructor
-
 public class Wall {
   private int height;
 

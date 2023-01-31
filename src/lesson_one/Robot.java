@@ -1,21 +1,14 @@
 package lesson_one;
 
 import lombok.AllArgsConstructor;
+import lombok.ToString;
 
 @AllArgsConstructor
+@ToString
 public class Robot implements Challenge {
   private String name;
   private int maxRun;
   private int maxJump;
-
-  @Override
-  public String toString() {
-    return "Robot{" +
-      "name='" + name + '\'' +
-      ", maxRun=" + maxRun +
-      ", maxJump=" + maxJump +
-      '}';
-  }
 
   @Override
   public int run() {

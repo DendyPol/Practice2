@@ -7,9 +7,8 @@ public class Crossfit {
     var robot = new Robot("Дроид", 500, 500);
     var wall = new Wall(4);
     var track = new Track(100);
-    Challenge[] challenge = {human, cat, robot};
-    for (var info : challenge) {
-      System.out.println(wall.isJump(info) ? track.isRun(info) : "Выбывает: " + info);
-    }
+    System.out.println(wall.isJump(human) ? track.isRun(human) : "Выбывает: " + human);
+    System.out.println(wall.isJump(cat) ? track.isRun(cat) : "Выбывает: " + cat);
+    System.out.println(wall.isJump(robot) ? track.isRun(robot) : "Выбывает: " + robot);
   }
 }
