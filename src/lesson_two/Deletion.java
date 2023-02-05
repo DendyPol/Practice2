@@ -4,11 +4,11 @@ public class Deletion {
   public static int testMass(String[][] array) throws MySizeArrayException, MyArrayDataException {
     var count = 0;
     for (int i = 0; i < array.length; i++) {
-      if (4 != array.length) {
+      if (array.length != 4) {
         throw new MySizeArrayException(array.length);
       }
       for (int j = 0; j < array[i].length; j++) {
-        if (4 != array[i].length) {
+        if (array[i].length != 4) {
           throw new MySizeArrayException(array.length);
         }
         try {
@@ -21,7 +21,7 @@ public class Deletion {
     return count;
   }
 
-  public static void main(String[] args) {
+  public static void main(String[] args) throws MySizeArrayException, MyArrayDataException {
     String[][] massCorrect = {
       {"1", "2", "3", "4"},
       {"1", "2", "3", "4"},
@@ -41,19 +41,19 @@ public class Deletion {
       {"1", "2", "3", "4"}
     };
     try {
-      System.out.println("Элементы массива равны " + testMass(massCorrect));
-    } catch (MyArrayDataException | MySizeArrayException ex) {
-      System.out.println(ex.getMessage());
+      testMass(massCorrect);
+    } catch (MySizeArrayException ex) {
+      ex.getMessage();
     }
     try {
-      System.out.println(testMass(massSizeIncorrect));
-    } catch (MyArrayDataException | MySizeArrayException ex) {
-      System.out.println(ex.getMessage());
+      testMass(massSizeIncorrect);
+    } catch (MySizeArrayException ex) {
+      ex.getMessage();
     }
     try {
-      System.out.println(testMass(massSymbolIncorrect));
-    } catch (MyArrayDataException | MySizeArrayException ex) {
-      System.out.println(ex.getMessage());
+      testMass(massSymbolIncorrect);
+    } catch (MyArrayDataException ex) {
+      ex.getMessage();
     }
   }
 }
