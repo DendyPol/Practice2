@@ -13,7 +13,7 @@ public class Deletion {
         }
         try {
           count += Integer.parseInt(array[i][j]);
-        } catch (RuntimeException ex) {
+        } catch (NumberFormatException ex) {
           throw new MyArrayDataException(i, j);
         }
       }
@@ -21,7 +21,7 @@ public class Deletion {
     return count;
   }
 
-  public static void main(String[] args) throws MySizeArrayException, MyArrayDataException {
+  public static void main(String[] args) {
     String[][] massCorrect = {
       {"1", "2", "3", "4"},
       {"1", "2", "3", "4"},
@@ -42,18 +42,18 @@ public class Deletion {
     };
     try {
       testMass(massCorrect);
-    } catch (MySizeArrayException ex) {
-      ex.getMessage();
+    } catch (MasterException ex) {
+      ex.printStackTrace();
     }
     try {
       testMass(massSizeIncorrect);
-    } catch (MySizeArrayException ex) {
-      ex.getMessage();
+    } catch (MasterException ex) {
+      ex.printStackTrace();
     }
     try {
       testMass(massSymbolIncorrect);
-    } catch (MyArrayDataException ex) {
-      ex.getMessage();
+    } catch (MasterException ex) {
+      ex.printStackTrace();
     }
   }
 }
