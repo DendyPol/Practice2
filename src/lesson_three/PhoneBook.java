@@ -22,25 +22,24 @@ public class PhoneBook {
     newPb.put(surname, number);
   }
 
-  private void addAll(PhoneBook newContacts) {
+  void addAll(PhoneBook newContacts) {
     pb.putAll(newPb);
   }
 
-  public void printContacts() {
-    for (Map.Entry<String, HashSet<String>> entry : pb.entrySet()) {
-      System.out.println(entry.getKey() + ": " + entry.getValue());
-    }
+  Set<String> get(String surname) {
+    return pb.get(surname);
   }
 
   public static void main(String[] args) {
     var pb = new PhoneBook();
     pb.add("Кадони", "89303454545");
     pb.add("Собчак", "89303454546");
+    pb.add("Собчак", "89303454580");
     var newPb = new PhoneBook();
     newPb.add("Собчак", "89303454547");
     newPb.add("Бузова", "89303454548");
     newPb.add("Должанский", "89303454549");
     pb.addAll(newPb);
-    pb.printContacts();
+    System.out.println(pb.get("Собчак"));
   }
 }
