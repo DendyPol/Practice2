@@ -3,7 +3,6 @@ package lesson_three;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.HashSet;
-import java.util.Set;
 
 public class Duplicates {
   public static void main(String[] args) {
@@ -12,9 +11,9 @@ public class Duplicates {
       "Семь", "Один", "Два", "Пять",
       "Шесть", "Семь", "Четыре"
     };
-    Set<String> uniqueWord = new HashSet<>(Arrays.asList(words));
+    var uniqueWord = new HashSet<>(Arrays.asList(words));
     System.out.println(uniqueWord);
-    HashMap<String, Integer> search = new HashMap<>();
+    var search = new HashMap<String, Integer>();
     for (var word : words) {
       search.put(word, search.getOrDefault(word, 0) + 1);
     }
