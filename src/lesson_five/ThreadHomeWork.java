@@ -1,6 +1,7 @@
 package lesson_five;
 
 import java.util.Arrays;
+import java.util.logging.Level;
 import java.util.logging.Logger;
 
 public class ThreadHomeWork {
@@ -13,17 +14,17 @@ public class ThreadHomeWork {
     secondMethod();
   }
 
-  private static void formula(float[] arr, int i) {
-    for (int j = 0; j < arr.length; j++, i++) {
-      arr[j] = (float) (arr[j] * Math.sin(0.2f + i / 5) * Math.cos(0.2f + i / 5) * Math.cos(0.4f + i / 2));
-    }
+  private static void formula(float[] arr) {
+    arr[(int) (float) 0] = (float) (arr[(int) (float) 0] * Math.sin(0.2f + (float) 0 / 5) * Math.cos(0.2f + (float) 0 / 5) * Math.cos(0.4f + (float) 0 / 2));
   }
 
   public static void firstMethod() {
     long startTime = System.currentTimeMillis();
     var arr = new float[size];
     Arrays.fill(arr, 1);
-    formula(arr, 0);
+    for (int i = 0; i < arr.length; i++) {
+      formula(arr);
+    }
     System.out.printf("Время выполнения однопоточности: %d\n", System.currentTimeMillis() - startTime);
   }
 
@@ -36,10 +37,14 @@ public class ThreadHomeWork {
     System.arraycopy(initialArray, 0, leftHalf, 0, h);
     System.arraycopy(initialArray, h, rightHalf, 0, h);
     var firstThread = new Thread(() -> {
-      formula(leftHalf, 0);
+      for (int i = 0; i < leftHalf.length; i++) {
+        formula(leftHalf);
+      }
     });
     var secondThread = new Thread(() -> {
-      formula(rightHalf, h);
+      for (int i = 0; i < rightHalf.length; i++) {
+        formula(rightHalf);
+      }
     });
     var mergedArray = new float[size];
     System.arraycopy(leftHalf, 0, mergedArray, 0, h);
@@ -50,7 +55,8 @@ public class ThreadHomeWork {
       firstThread.join();
       secondThread.join();
     } catch (InterruptedException e) {
-      logger.severe("Возникла ошибка чтения потока:" + e.getMessage());
+      logger.log(Level.WARNING, "Возникла ошибка чтения потока:" + e.getMessage());
+      e.printStackTrace();
     }
     System.out.printf("Время выполения многопоточности: %d\n", System.currentTimeMillis() - startTime);
   }
